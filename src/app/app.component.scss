@@ -1,3 +1,8 @@
+html {
+  //overflow-x: hidden !important;
+  //overflow-y: hidden !important;
+}
+
 .header {
   background-color: lightblue;
   height: 135px;
@@ -5,12 +10,39 @@
 }
 
 .flex-container {
-  height: 100vh;
+  height: 913px;
   width: 400px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   float: right;
+  overflow: auto !important;
+}
+
+.container-item-special {
+  color: #000000;
+  flex-grow: 1;
+  background-color: aquamarine;
+  padding: 15px;
+  margin: 10px;
+  border: black solid 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  .special-content {
+    color: brown;
+    text-transform: uppercase;
+    text-align: center;
+    flex-grow: 1;
+  }
+
+  .special-content-button {
+    color: brown;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 5px;
+  }
 }
 
 .container-item {
@@ -18,7 +50,7 @@
   flex-grow: 2;
   background-color: aqua;
   padding: 15px;
-  margin: 5px;
+  margin: 10px;
   border: black solid 3px;
 
   &.expandedAsFuck {
@@ -27,6 +59,6 @@
   }
 
   &.collapsedLol {
-    flex-grow: 1;
+    flex-grow: 0;
   }
 }
