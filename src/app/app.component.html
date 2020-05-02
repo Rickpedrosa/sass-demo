@@ -3,17 +3,17 @@
   <div class="flex-container">
     <div class="container-item-special">
       <div>
-        <h4>BETSLIP</h4>
+        <h2>{{selectedClub.teamName}}</h2>
+        <ul>
+          <li *ngFor="let player of currentPlayers" class="special-content"
+              [ngClass]="selectedClub.teamName !== INITIAL ? 'visible' : 'hidden'">
+            {{player.playerName}}
+          </li>
+        </ul>
       </div>
-      <div class="special-content">
-        CONTENT
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam suscipit ante ex, quis molestie mi viverra in.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam suscipit ante ex, quis molestie mi viverra in.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam suscipit ante ex, quis molestie mi viverra in.
-      </div>
-      <div class="special-content-button">
-        <button>POOOOM</button>
-      </div>
+      <!--      <div class="special-content-button">-->
+      <!--        <button>POOOOM</button>-->
+      <!--      </div>-->
     </div>
     <div *ngFor="let box of betsDemoArray; let index = i"
          [ngClass]="box.class">
@@ -26,53 +26,53 @@
         </div>
       </div>
     </div>
-    <!--  <div class="container-item" (click)="onclickDiv()">1</div>-->
-    <!--  <div class="container-item">2</div>-->
-    <!--  <div class="container-item">3</div>-->
   </div>
-  <div class="flex-container middle-block">
-    <div class="box">
-      Hello
+  <div class="flex-container grid-player">
+    <!--    <div-->
+    <!--      *ngFor="let club of clubs; let i = index"-->
+    <!--      class="box"-->
+    <!--      (click)="getClubPlayersOnClick(club.teamName, $event)"-->
+    <!--      [ngClass]="(selectedClub.teamName === club.teamName) ? 'selected' : 'non-selected'">-->
+    <!--      <img [src]="getClubImage(i)" alt="">-->
+    <!--      <div>-->
+    <!--        {{club.teamName}}-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <div class="box x">
+      <img src="https://cdn.sofifa.com/teams/241/light_120.png" alt="">
     </div>
-    <div class="box">
-      Hello
+    <div class="box w">
+      <img src="https://cdn.sofifa.com/players/158/023/20_120.png" alt="">
     </div>
-    <div class="box">
-      Hello
-    </div>
-    <div class="box">
-      Hello
-    </div>
-  </div>
-  <div class="flex-container">
-    <div class="container-item-special" [style.flex-grow]="betSpecial.expanded ? '1' : '0'">
-      <div (click)="betSpecial.expanded = !betSpecial.expanded">
-        <h4>{{betSpecial.header.toUpperCase()}}</h4>
-      </div>
-      <div class="special-content" [style.display]="betSpecial.expanded ? 'block' : 'none'">
-        {{betSpecial.name}}
-      </div>
-      <div class="special-content-button">
-        <button>POOOOM</button>
-      </div>
-    </div>
-    <div *ngFor="let box of betsDemoArray; let index = i"
-         [ngClass]="box.class">
+    <div class="box y">
       <div>
-        <div style="padding-bottom: 5px" (click)="box.expanded = !box.expanded">
-          <h4>{{box.header}}</h4>
-        </div>
-        <div [ngStyle]="{'display': box.expanded === false ? 'none' : 'block'}">
-          {{box.name}}
-        </div>
+        Name: L. Messi <br/>
+      </div>
+      <div>
+        Club: FC Barcelona <br/>
+      </div>
+      <div>
+        Age: 32 <br/>
+      </div>
+      <div>
+        Country: Argentina
       </div>
     </div>
-    <!--  <div class="container-item" (click)="onclickDiv()">1</div>-->
-    <!--  <div class="container-item">2</div>-->
-    <!--  <div class="container-item">3</div>-->
+    <div class="box z">
+      Right
+    </div>
   </div>
   <div class="footer-container">
-    <div class="footer">THIS IS THE FOOTER BROL</div>
+    <div class="footer">
+      THIS IS THE FOOTER BROL
+      <div id="grid">
+        <div style="grid-area: x">Left</div>
+        <div style="grid-area: y">Header</div>
+        <div style="grid-area: z">Footer</div>
+        <div style="grid-area: w">Right</div>
+        <div style="grid-area: center">Main</div>
+      </div>
+    </div>
   </div>
 </div>
 <router-outlet></router-outlet>
