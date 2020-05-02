@@ -1,32 +1,78 @@
-<div class="header">OLA K TAL</div>
-<div class="flex-container">
-  <div class="container-item-special">
-    <div>
-      <h4>BETSLIP</h4>
-    </div>
-    <div class="special-content">
-      CONTENT
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam suscipit ante ex, quis molestie mi viverra in.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam suscipit ante ex, quis molestie mi viverra in.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam suscipit ante ex, quis molestie mi viverra in.
-    </div>
-    <div class="special-content-button">
-      <button>POOOOM</button>
-    </div>
-  </div>
-  <div *ngFor="let box of betsDemoArray; let index = i"
-       [ngClass]="box.class">
-    <div>
-      <div style="padding-bottom: 5px" (click)="box.expanded = !box.expanded">
-        <h4>{{box.header}}</h4>
+<nav class="header">THIS IS THE HEADER BRO</nav>
+<div class="flex-wrapper">
+  <div class="flex-container">
+    <div class="container-item-special">
+      <div>
+        <h4>BETSLIP</h4>
       </div>
-      <div [ngStyle]="{'display': box.expanded === false ? 'none' : 'block'}">
-        {{box.name}}
+      <div class="special-content">
+        CONTENT
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam suscipit ante ex, quis molestie mi viverra in.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam suscipit ante ex, quis molestie mi viverra in.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam suscipit ante ex, quis molestie mi viverra in.
+      </div>
+      <div class="special-content-button">
+        <button>POOOOM</button>
       </div>
     </div>
+    <div *ngFor="let box of betsDemoArray; let index = i"
+         [ngClass]="box.class">
+      <div>
+        <div style="padding-bottom: 5px" (click)="box.expanded = !box.expanded">
+          <h4>{{box.header}}</h4>
+        </div>
+        <div [ngStyle]="{'display': box.expanded === false ? 'none' : 'block'}">
+          {{box.name}}
+        </div>
+      </div>
+    </div>
+    <!--  <div class="container-item" (click)="onclickDiv()">1</div>-->
+    <!--  <div class="container-item">2</div>-->
+    <!--  <div class="container-item">3</div>-->
   </div>
-  <!--  <div class="container-item" (click)="onclickDiv()">1</div>-->
-  <!--  <div class="container-item">2</div>-->
-  <!--  <div class="container-item">3</div>-->
+  <div class="flex-container middle-block">
+    <div class="box">
+      Hello
+    </div>
+    <div class="box">
+      Hello
+    </div>
+    <div class="box">
+      Hello
+    </div>
+    <div class="box">
+      Hello
+    </div>
+  </div>
+  <div class="flex-container">
+    <div class="container-item-special" [style.flex-grow]="betSpecial.expanded ? '1' : '0'">
+      <div (click)="betSpecial.expanded = !betSpecial.expanded">
+        <h4>{{betSpecial.header.toUpperCase()}}</h4>
+      </div>
+      <div class="special-content" [style.display]="betSpecial.expanded ? 'block' : 'none'">
+        {{betSpecial.name}}
+      </div>
+      <div class="special-content-button">
+        <button>POOOOM</button>
+      </div>
+    </div>
+    <div *ngFor="let box of betsDemoArray; let index = i"
+         [ngClass]="box.class">
+      <div>
+        <div style="padding-bottom: 5px" (click)="box.expanded = !box.expanded">
+          <h4>{{box.header}}</h4>
+        </div>
+        <div [ngStyle]="{'display': box.expanded === false ? 'none' : 'block'}">
+          {{box.name}}
+        </div>
+      </div>
+    </div>
+    <!--  <div class="container-item" (click)="onclickDiv()">1</div>-->
+    <!--  <div class="container-item">2</div>-->
+    <!--  <div class="container-item">3</div>-->
+  </div>
+  <div class="footer-container">
+    <div class="footer">THIS IS THE FOOTER BROL</div>
+  </div>
 </div>
 <router-outlet></router-outlet>
