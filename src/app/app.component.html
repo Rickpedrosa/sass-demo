@@ -1,4 +1,4 @@
-<nav class="header">THIS IS THE HEADER BRO</nav>
+<nav class="header" (click)="webSocket._send('go')">THIS IS THE HEADER BRO</nav>
 <div class="flex-wrapper">
   <div class="flex-container">
     <div class="container-item-special">
@@ -6,8 +6,9 @@
         <h2>{{selectedClub.teamName}}</h2>
         <ul>
           <li *ngFor="let player of currentPlayers" class="special-content"
-              [ngClass]="selectedClub.teamName !== INITIAL ? 'visible' : 'hidden'">
-            {{player.playerName}}
+              [ngClass]="[selectedClub.teamName !== INITIAL ? 'visible' : 'hidden', (selectedPlayer.playerName === player.playerName) ? 'selected' : 'non-selected']"
+              (click)="selectPlayer(player)">
+            <span>{{player.playerName}} ({{player.potential}})</span>
           </li>
         </ul>
       </div>
@@ -15,54 +16,70 @@
       <!--        <button>POOOOM</button>-->
       <!--      </div>-->
     </div>
-    <div *ngFor="let box of betsDemoArray; let index = i"
-         [ngClass]="box.class">
+  </div>
+  <div class="flex-container middle-block" [style.display]="selectedPlayer.playerName !== '' ? 'none' : 'grid'">
+    <div
+      *ngFor="let club of clubs; let i = index"
+      class="box"
+      (click)="getClubPlayersOnClick(club.teamName)"
+      [ngClass]="(selectedClub.teamName === club.teamName) ? 'selected' : 'non-selected'">
+      <img [src]="getClubImage(i)" alt="">
       <div>
-        <div style="padding-bottom: 5px" (click)="box.expanded = !box.expanded">
-          <h4>{{box.header}}</h4>
-        </div>
-        <div [ngStyle]="{'display': box.expanded === false ? 'none' : 'block'}">
-          {{box.name}}
-        </div>
+        {{club.teamName}}
       </div>
     </div>
   </div>
-  <div class="flex-container grid-player">
-    <!--    <div-->
-    <!--      *ngFor="let club of clubs; let i = index"-->
-    <!--      class="box"-->
-    <!--      (click)="getClubPlayersOnClick(club.teamName, $event)"-->
-    <!--      [ngClass]="(selectedClub.teamName === club.teamName) ? 'selected' : 'non-selected'">-->
-    <!--      <img [src]="getClubImage(i)" alt="">-->
-    <!--      <div>-->
-    <!--        {{club.teamName}}-->
-    <!--      </div>-->
-    <!--    </div>-->
+  <div class="flex-container grid-player" [style.display]="selectedPlayer.playerName !== '' ? 'grid' : 'none'">
     <div class="box x">
-      <img src="https://cdn.sofifa.com/teams/241/light_120.png" alt="">
+      <img [src]="getClubImageForPlayer()" alt="">
     </div>
     <div class="box w">
-      <img src="https://cdn.sofifa.com/players/158/023/20_120.png" alt="">
+      <img [src]="selectedPlayer.image" alt="">
     </div>
     <div class="box y">
       <div>
-        Name: L. Messi <br/>
+        Name: {{selectedPlayer.playerName}}
       </div>
       <div>
-        Club: FC Barcelona <br/>
+        Club: {{selectedPlayer.club}}
       </div>
       <div>
-        Age: 32 <br/>
+        Age: {{selectedPlayer.age}}
       </div>
       <div>
-        Country: Argentina
+        Country: {{selectedPlayer.nationality}}
       </div>
     </div>
     <div class="box z">
-      Right
+      <div>
+        Potential: {{selectedPlayer.potential}}
+      </div>
+      <div>
+        Positions: {{selectedPlayer.positions}}
+      </div>
+      <div>
+        Wage: {{selectedPlayer.wage}}€
+      </div>
     </div>
   </div>
-  <div class="footer-container">
+<!--  <div class="flex-container">-->
+<!--&lt;!&ndash;    <div class="container-item-special">&ndash;&gt;-->
+<!--&lt;!&ndash;      <div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <h2>{{selectedClub.teamName}}</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;        <ul>&ndash;&gt;-->
+<!--&lt;!&ndash;          <li *ngFor="let player of currentPlayers" class="special-content"&ndash;&gt;-->
+<!--&lt;!&ndash;              [ngClass]="[selectedClub.teamName !== INITIAL ? 'visible' : 'hidden', (selectedPlayer.playerName === player.playerName) ? 'selected' : 'non-selected']"&ndash;&gt;-->
+<!--&lt;!&ndash;              (click)="selectPlayer(player)">&ndash;&gt;-->
+<!--&lt;!&ndash;            <span>{{player.playerName}} ({{player.potential}})</span>&ndash;&gt;-->
+<!--&lt;!&ndash;          </li>&ndash;&gt;-->
+<!--&lt;!&ndash;        </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;      </div>&ndash;&gt;-->
+<!--&lt;!&ndash;      &lt;!&ndash;      <div class="special-content-button">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;      &lt;!&ndash;        <button>POOOOM</button>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;      &lt;!&ndash;      </div>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--  </div>-->
+  <div class="footer-container sticky">
     <div class="footer">
       THIS IS THE FOOTER BROL
       <div id="grid">
